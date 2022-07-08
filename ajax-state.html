@@ -8,6 +8,11 @@
 </head>
 <body>
     <script>
+        const ajax = new XMLHttpRequest()
+
+        ajax.onreadystatechange = function () {
+            console.info(`Ready State Change ${ajax.readyState}`)
+        }
         
     </script>
 </body>

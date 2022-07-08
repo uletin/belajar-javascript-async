@@ -9,13 +9,18 @@
 <body>
     <h1 id="response"></h1>
     <script>
-        function displayResponse(json){
+        function displayResponse(json) {
             const header = document.getElementById("response")
             header.textContent = json.response
         }
 
         const ajax = new XMLHttpRequest()
-        ajax.open("GET", "api/belajar.json")
+        ajax.onreadystatechange = function () {
+            console.info(`Ready State Change ${ajax.readyState}`)
+        }
+
+        // const ajax = new XMLHttpRequest()
+        ajax.open("GET", "api/ok.json")
         ajax.addEventListener("load", function() {
             if (ajax.status === 200){
                 const json = JSON.parse(ajax.responseText)

@@ -4,40 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ajax Send Query Param</title>
 </head>
 <body>
     <form action="">
-        <label for="username">Username:
-            <input type="text" id="username" name="username">
+        <label for="search">Search:
+            <input type="text" id="search" name="username">
         </label>
         <br>
-        <label for="password">Password:
-            <input type="password" id="password" name="password">
-        </label>
-        <br>
-        <input type="button" id="login" value="login">
+        <input type="button" id="searchButton" value="search">
     </form>
     <h1 id="response"></h1>
 
     <script>
-        function doLogin(){
+        function doSearch(){
             const ajax = new XMLHttpRequest()
-            ajax.open("POST", "https://hookb.in/9XxOnB9lbBtWKedWMWka")
+            const param = new URLSearchParams
+            param.append("search", document.getElementById("search").value)
+            param.append("filter", document.getElementById("search").value)
+
+            ajax.open("GET", `https://hookb.in/9XxOnB9lbBtWKedWMWka?${param.toString()}`)
             ajax.onload = function() {
                 const response = document.getElementById("response")
                 response.innerText = ajax.responseText
             }
-            ajax.setRequestHeader("Content-Type", "application/json")
 
-            const json  = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            }
-            ajax.send(JSON.stringify(json))
+            ajax.send()
         }
 
-        document.getElementById("login").onclick = doLogin
+        document.getElementById("searchButton").onclick = doSearch
     </script>
 </body>
 </html>

@@ -40,6 +40,16 @@
                 ajax.send()
             })
         }
+
+        const promise = Promise.all([
+            getProduct("product1"),
+            getProduct("product2"),
+            getProduct("product3"),
+        ])
+
+        promise.then(function (products) {
+            console.info(products)
+        })
     </script>
 </body>
 </html>
